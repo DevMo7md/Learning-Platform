@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <h3>{{ lesson.title }}</h3>
+        {% if lesson.thumnale_image %}
+        <div class="video-container">
+            <video controls poster="{{ lesson.thumnale_image.url }}">
+                <source src="{{ lesson.lesson.url }}" type="video/mp4">
+            </video>
+        </div>             
+        {% else %}   
+        <center><video controls>
+            <source height="550" width="1000" src="{{ lesson.lesson.url }}" type="video/mp4">
+        </video></center>
+        {% endif %}
+    <p>{{ lesson.discrebtion }}</p>
+{%endblock%}

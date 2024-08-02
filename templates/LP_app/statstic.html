@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block dash %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="cont" >
+{% include 'parts/sidepar.html' %}
+    <div class="main-content">
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" dir="rtl">
+        {{message}}
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+            style="font-family: 'Almarai', sans-serif; font-size: 1em;"
+        ></button>
+        </div>
+        {% endfor %}{% endif %}
+        {% include 'parts/nav.html' %}<br>
+        <h1 class="head">لوحة التحكم</h1>
+        <hr>
+        {% include 'parts/stats.html' %}
+    </div>
+</div>
+{% endblock %}

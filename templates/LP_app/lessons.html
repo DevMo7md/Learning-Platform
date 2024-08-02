@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+        /* Custom CSS styles */
+    .card {
+        width: 100%;
+        max-width: 550px; /* Limit maximum width for larger screens */
+        height: 100%;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+        width: 100%;
+        height: 100%; /* Adjust image height */
+        object-fit: cover; /* Maintain aspect ratio */
+    }
+    #view-btn{
+        background-color: blueviolet;
+        color: aliceblue;
+    }
+</style>
+{% if videos %}
+    <div class="row row-cols-1 row-cols-md-3 g-3 justify-content-center">
+        {% for video in videos %}
+        <div class="col">
+            <a href="{% url 'video' video.id %}" class="text-decoration-none">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                        <img src="{{video.thumnale_image.url}}" class="img-fluid rounded-start" alt="Course image">
+                        </div>
+                        <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{video.title}}</h5>
+                            <p class="card-text">{{video.discrebtion}}</p>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn" id="view-btn">View</button>
+                            </div>
+                            <hr><p class="card-text"><small class="text-body-light">{{video.added_date}}</small></p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <i class="fa-solid fa-circle-exclamation d-flex justify-content-center" style="font-size:200px; color: #800080; font-weight:bold; padding:10px;"></i><br>
+    <h1 style="color: #800080; font-weight:bold; padding:10px;" class="d-flex justify-content-center" >للأسف ,هذا المدرس لم يرفع اي فيديو بعد &nbsp;&nbsp;</h1><br>
+{% endif %}
+{%endblock%}
+
+

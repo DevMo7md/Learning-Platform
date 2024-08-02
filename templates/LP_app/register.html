@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block login %}
+{% load static %}
+<link
+        rel="stylesheet"
+        href="{% static 'css/login.css' %}"
+        />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Almarai:wght@300;400;700;800&family=Zain:wght@200;300;400;700;800;900&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<body>
+  <div class="background"></div>
+  <a class="btn" style="background-color:rgb(145, 106, 182); color:rgb(0, 0, 0);  position:absolute; left:0; top:0; margin:20px; font-family:'Alegreya',sans-serif;z-index:9999;" href="{% url 'landing' %}"><i class="fa-solid fa-arrow-left"></i></a>
+  <div class="card">
+    <img class="logo" src="{% static 'images/zaied-logo.png' %}">
+    <h3> !أهلا بيك في منصتنا</h3>
+    <h4 style='color: rgb(102, 0, 107); font-family: "Zain",sans-serif;'>أنشئ حسابك من هنا</h4>
+
+    <form class="form" dir="rtl" method="POST" action="{% url 'register' %}">
+      {% csrf_token %}
+      <input type="text" placeholder="أسم المستخدم" name="username">
+      <input type="email" placeholder="البريد الالكتروني" name="email">
+      <input type="text" placeholder="الاسم الاول" name="first_name">
+      <input type="text" placeholder="الاسم الثاني" name="second_name">
+      <input type="text" placeholder="الاسم الثالث" name="third_name">
+      <input type="text" placeholder="الاسم الأخير" name="last_name">
+      <input dir="rtl"  type="tel" placeholder="رقم تيليفونك" name="phone_num">
+      <input dir="rtl"  type="tel" placeholder="رقم تيليفون الأب" name="dad_num">
+      <input dir="rtl"  type="tel" placeholder="رقم تيليفون الأم" name="mom_num">
+      <input type="text" placeholder="أسم المدرسة" name="school">
+      <input type="text" placeholder="وظيفة الأب" name="dad_job">
+      <select class="form-select" aria-label="Default select example" name="government">
+          <option selected>أختار محافظتك</option>
+          <option value="1">أسوان</option>
+          <option value="2">أسيوط</option>
+          <option value="3">الإسماعيلية</option>
+          <option value="4">الأقصر</option>
+          <option value="5">البحر الأحمر</option>
+          <option value="6">البحيرة</option>
+          <option value="7">بني سويف</option>
+          <option value="8">الدقهلية</option>
+          <option value="9">الفيوم</option>
+          <option value="10">الجيزة</option>
+          <option value="11">الشرقية</option>
+          <option value="12">السويس</option>
+          <option value="13">المنوفية</option>
+          <option value="14">المنيا</option>
+          <option value="15">مطروح</option>
+          <option value="16">كفر الشيخ</option>
+          <option value="17">قنا</option>
+          <option value="18">القاهرة</option>
+          <option value="19">بورسعيد</option>
+          <option value="20">شمال سيناء</option>
+          <option value="21">جنوب سيناء</option>
+          <option value="22">الوادي الجديد</option>
+          <option value="23">الإسكندرية</option>
+          <option value="24">دمياط</option>
+          <option value="25">أسوان</option>
+          <option value="26">الأقصر</option>
+          <option value="27">الإسماعيلية</option>
+      </select>
+      <select class="form-select" aria-label="Default select example" name="alsaf">
+          <option selected>أختار الصف الدراسي</option>
+          <option value="1">الصف الأول الثانوي</option>
+          <option value="2">الصف الثاني الثانوي</option>
+          <option value="3">الصف الثالث الثانوي</option>
+      </select>
+      <input type="password" placeholder="كلمة المرور" name="password1">
+      <input type="password" placeholder="تأكيد كلمة المرور" name="password2">
+      <button type="submit">أنشئ حسابك</button>
+    </form>
+
+    <footer>
+        اذا لديك حسابا بالفعل 
+      <a href="{% url 'login' %}">سجل دخول</a>
+      <hr>
+      اذا كنت تريد إنشاء حسابك كمدرس
+      <a href='#' > التواصل معنا من هنا </a>
+    </footer>
+  </div>
+</body>
+{% endblock login %}

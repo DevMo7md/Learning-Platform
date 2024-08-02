@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block dash %}
+<style>
+    .form-label {
+        display: inline-block;
+        width: 100px; /* يمكنك ضبط العرض حسب الحاجة */
+        text-align: right;
+        margin-right: 10px; /* مسافة بين التسمية وحقل الإدخال */
+    }
+    .form-control {
+        display: inline-block;
+        width: calc(100% - 120px); /* تعيين العرض بناءً على عرض التسمية */
+    }
+</style>
+{% include 'parts/sidepar.html' %}
+<div class="main-content">
+    {% include 'parts/nav.html' %}
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert" dir="rtl">
+    {{message}}
+    <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+        style="font-family: 'Almarai', sans-serif; font-size: 1em;"
+    ></button>
+    </div>
+    {% endfor %}{% endif %}
+    <div class="row tea-lessons">
+        <h3 class="head">فيديوهاتك</h3>
+        <hr />
+        {% for lesson in lessons %}
+        <div class="col-md-4 video">
+            <img src="{{lesson.thumnale_image.url}}" class="thumbnail-img" />
+            <hr />
+            <h5>{{lesson.title}}</h5>
+            <p>{{ lesson.discrebtion }}</p>
+            <div>
+            <a href="{% url 'delete_lesson' lesson.id %}" class="btn btn bg-danger">
+                <i class="fas fa-trash"></i>
+            </a>
+            <a
+                href="{% url 'edit_lesson' lesson.id %}"
+                class="btn"
+                style="
+                background-color: rgb(202, 43, 226);
+                font-size: 1em;
+                font-family: 'Almarai', sans-serif;
+                color: aliceblue;
+                border-radius: 5px;
+                "
+                >تعديل</a
+            >
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row m-1 mb-3" id="lessonform-button">   
+        <a href="#lessonform" class="btn" data-toggle="collapse" style="background-color: blueviolet; font-family: 'Almarai', sans-serif; font-size:large;"> إضافه فيديو &nbsp;&nbsp;<i class="fa-solid fa-video"></i></a>
+    </div>
+    <div class="collapse" id="lessonform">  
+        <form method="POST" action="{% url 'teacher_video' pk=teacher.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title" class="form-label">عنوان الفيديو :</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="عنوان الفيديو" required>
+            </div>
+            <div class="form-group">
+                <label for="lesson" class="form-label">الفيديو :</label>
+                <input type="file" class="form-control" id="lesson" name="lesson" required>
+            </div>
+            <div class="form-group">
+                <label for="category" class="form-label">التصنيف :</label>
+                <select class="form-control" id="category" name="category" required>
+                    {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="thumnale_image" class="form-label">صورة الغلاف :</label>
+                <input type="file" class="form-control" id="thumnale_image" name="thumnale_image" required>
+            </div>
+            <div class="form-group">
+                <label for="discrebtion" class="form-label">وصف الفيديو :</label>
+                <textarea class="form-control" id="discrebtion" name="discrebtion" placeholder="وصف الفيديو"></textarea>
+            </div>
+            <button type="submit" style="background-color: blueviolet; font-size: 1em; font-family: 'Almarai', sans-serif; color:aliceblue; border-radius: 5px;" >نشر</button>
+        </form>
+    </div> 
+</div>
+{% endblock %}

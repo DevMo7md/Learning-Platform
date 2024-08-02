@@ -1,0 +1,55 @@
+<style>
+    nav{
+        border-radius: 5px;
+    }
+</style>
+<nav class="navbar navbar-expand-lg" style="background-color: blueviolet;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}" style="color: aliceblue;">Zaied Academy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}" style="color: aliceblue;">الصفحة الرئيسية</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'landing' %}" style="color: aliceblue;">الصفحة الرئيسية</a>
+                    </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'logout' %}" style="color: aliceblue;">تسجيل خروج</a>
+                    </li>
+                    {% else %}
+                    {% endif %}
+                {% if user.is_staff %}
+                {% else %}
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: aliceblue;">
+                    المسارات
+                </a>
+                {% endif %}
+                <ul class="dropdown-menu">
+                    {% for cat in categories %}
+                    <li><a class="dropdown-item" href="{% url 'teachers_home' cat.name %}">{{cat.name}}</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    {% endfor %}
+                </ul>
+                </li>
+                
+                </ul>
+                <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+                <form class="d-flex ms-5">
+                    <input class="form-control me-2" type="search" placeholder="بحث" aria-label="بحث" style="background-color: rgb(205, 152, 255); border:blueviolet; color:aliceblue;">
+                    <button class="btn btn-outline-light hidden" type="submit" style="margin: 5px;">بحث</button>
+                    
+                </form>
+                </ul>
+                <a id="theme-toggle"><i class="fas fa-adjust" onclick="toggleTheme()" style="color: white;"></i></a>
+            </div>
+        </div>
+    </nav>

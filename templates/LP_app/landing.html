@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main>
+        <div class="hero-content">
+            <h2>منصة</h2>
+            <h1>Zaied Academy</h1>
+            <p>منصة متكاملة بها كل ما يحتاجه الطالب لتفوقه</p>
+        </div>
+        <section class="hero">
+        <div class="buttons-area">    
+            <div class="buttons-bg">  
+                <div class="buttons">
+                    <div class="d-grid gap-2 d-md-block">
+                        <a href="{% url 'login' %}" class="btn login-button" type="button">سجل الدخول</a>
+                        <a href="{% url 'register' %}"  class="btn signup-button" type="button">انشاء حساب</a>
+                    </div>
+                    <div class="d-grid gap-4 col-10 order-books">
+                        <button class="btn order-books-button" type="button">اطلب كتبك من هنا !</button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        </section>
+    </main>
+{% endblock %}
