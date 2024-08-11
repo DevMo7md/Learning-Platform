@@ -1,22 +1,17 @@
 // script.js
-function toggleTheme() {
-    const body = document.body;
-    if (body.classList.contains('light-theme')) {
-        body.classList.remove('light-theme');
-        body.classList.add('dark-theme');
-        localStorage.setItem('theme', 'dark');
-    } else {
-        body.classList.remove('dark-theme');
-        body.classList.add('light-theme');
-        localStorage.setItem('theme', 'light');
-    }
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const savedTheme = localStorage.getItem("theme") || "light-theme";
+    document.body.classList.add(savedTheme);
 
-// تحميل السمة المحفوظة عند تحميل الصفحة
-window.onload = function() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        document.body.classList.remove('light-theme', 'dark-theme');
-        document.body.classList.add(savedTheme + '-theme');
-    }
-};
+    document
+        .getElementById("theme-toggle")
+        .addEventListener("click", function () {
+        document.body.classList.toggle("light-theme");
+        document.body.classList.toggle("dark-theme");
+
+        const currentTheme = document.body.classList.contains("dark-theme")
+            ? "dark-theme"
+            : "light-theme";
+        localStorage.setItem("theme", currentTheme);
+        });
+});

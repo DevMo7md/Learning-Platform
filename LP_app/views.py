@@ -7,7 +7,7 @@ from .models import MonthlySubscription
 from .tasks import update_monthly_subscriptions
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
-
+from django.db.models import Q
 # Create your views here.
 def landing(request):
     return render(request, 'LP_app/landing.html')
@@ -64,7 +64,7 @@ def teachers_home(request, foo):
 
     teachers = Teachers.objects.filter(subject=category)
     categories = Category.objects.all()
-
+    
     # dashboard
     if hasattr(request.user, 'teachers'):
         teacher = Teachers.objects.get(user=request.user)
@@ -72,10 +72,20 @@ def teachers_home(request, foo):
     else:
         dashboard_url = None
 
+    if 'search-bar' in request.GET:
+        teacherr = request.GET['search-bar']
+        if teacherr:
+            # Filter products based on the search query
+            teachers = teachers.filter(Q(first_name__icontains=teacherr) | Q(last_name__icontains=teacherr) | Q(second_name__icontains=teacherr) | Q(third_name__icontains=teacherr))
+            if not teachers:
+                err = f'No results for {teacherr} \n Try checking your spelling or use more general terms'
+
+
     context = {
         'teachers': teachers,
         'categories': categories,
-        'dashboard_url': dashboard_url,        
+        'dashboard_url': dashboard_url,     
+        'cat': category,   
     }
     return render(request, 'LP_app/teachers_home.html', context)
 

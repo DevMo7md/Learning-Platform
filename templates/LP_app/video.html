@@ -2,7 +2,8 @@
 {% load static %}
 {% block content %}
 
-    <h3>{{ lesson.title }}</h3>
+    <h3 class="d-flex justify-content-center">{{ lesson.title }}</h3>
+    <hr>
         {% if lesson.thumnale_image %}
         <div class="video-container">
             <video controls poster="{{ lesson.thumnale_image.url }}">
@@ -13,6 +14,6 @@
         <center><video controls>
             <source height="550" width="1000" src="{{ lesson.lesson.url }}" type="video/mp4">
         </video></center>
-        {% endif %}
-    <p>{{ lesson.discrebtion }}</p>
+        {% endif %}<hr><br>
+    <p class="d-flex justify-content-start">{{ lesson.discrebtion }}</p>
 {%endblock%}

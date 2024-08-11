@@ -4,7 +4,16 @@ body {
     font-family: "Almarai", sans-serif;
     padding: 10px;
 }
-
+.navbar {
+    background-color: rgba(58, 58, 58, 0.5) !important; /* خلفية شفافة */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: "Almarai", sans-serif;
+        }
 /* الوضع الفاتح */
 body.light-theme {
     background-color: rgb(255, 255, 255);
@@ -112,7 +121,7 @@ header {
     justify-content: end; /* جعل العنصر في أقصى اليمين */
     align-content: start; /* جعل العنصر في الأعلى */
     padding: 20px;
-    background-image: url('/static/images/chac-LP.png'); /* مسار الصورة */
+    background-image: url('/static/images/Learning-bro.png'); /* مسار الصورة */
     background-size: cover; /* يجعل الصورة تغطي العنصر بالكامل */
     background-position: top right; /* يحافظ على مركز الصورة في منتصف العنصر */
     background-repeat: no-repeat; /* يمنع تكرار الصورة */
@@ -222,7 +231,9 @@ button {
 
 .main-content {
     width: 80%; /* عرض المحتوى الرئيسي 80% من عرض الشاشة */
-    padding-right: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: "Almarai", sans-serif;
+    padding: 10px;
 }
 
 .cont {
@@ -710,8 +721,12 @@ hr{
 }
 .video {
     margin-bottom: 20px; /* تباعد أسفل كل صورة */
-}
 
+}
+.vid{
+    display: flex;
+    flex-direction: row;
+}
 .thumbnail-img {
     width: 100%;
     height: auto;
@@ -747,3 +762,60 @@ hr{
     height: 100%;
     object-fit: cover; /* لضبط الفيديو لملاءمة الحاوية */
 }
+
+/*teachers_home*/
+.spotify-playlists {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-top: 50px;
+
+}
+.spotify-playlists h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.spotify-playlists .list {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+}
+.spotify-playlists .list .item {
+  max-width: 230px;
+  max-height: 300px;
+  padding: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all ease 0.4s;
+}
+.spotify-playlists .list .item:hover {
+  background-color: #f1c5ff;
+  color: #111111;
+}
+.spotify-playlists .list .item img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.spotify-playlists .list .item .play {
+  position: relative;
+}
+
+
+.spotify-playlists .list .item:hover .play .fa {
+  opacity: 1;
+  transform: translateY(-20px);
+}
+.spotify-playlists .list .item h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.spotify-playlists .list .item p {
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
